@@ -67,6 +67,7 @@ import com.wuest.prefab.Proxy.Messages.Handlers.PlayerEntityHandler;
 import com.wuest.prefab.Proxy.Messages.Handlers.StructureHandler;
 import com.wuest.prefab.Proxy.Messages.PlayerEntityTagMessage;
 import com.wuest.prefab.Proxy.Messages.StructureTagMessage;
+import com.wuest.prefab.Util.EtFuturumCompat;
 import com.wuest.prefab.Util.Tuple2;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -1354,18 +1355,6 @@ public class ModRegistry {
             'a',
             Item.getItemFromBlock(Blocks.glass));
 
-        // Andesite Stairs
-
-        // Andesite Stairs
-
-        // Diorite Stairs
-
-        // Diorite Stairs
-
-        // Granite Stairs
-
-        // Granite Stairs
-
         // Glass Slabs
         ModRegistry.addShapedRecipe(
             "Glass Slabs",
@@ -1375,17 +1364,83 @@ public class ModRegistry {
             'a',
             Item.getItemFromBlock(Blocks.glass));
 
-        // Andesite Slabs
+        ModRegistry.RegisterEtFuturumRecipes();
+    }
 
-        // Andesite Slabs
+    /**
+     * Adds the original 1.10 recipes which use blocks from Et Futurum Requiem, when that mod is installed.
+     */
+    public static void RegisterEtFuturumRecipes() {
+        if (!EtFuturumCompat.isEnabled()) {
+            return;
+        }
 
-        // Diorite Slabs
+        String[] woodTypes = new String[] { "spruce", "birch", "jungle", "acacia", "dark_oak" };
 
-        // Diorite Slabs
+        for (String wood : woodTypes) {
+            Block fence = EtFuturumCompat.getBlock("fence_" + wood);
+            Block fenceGate = EtFuturumCompat.getBlock("fence_gate_" + wood);
 
-        // Granite Slabs
+            if (fence != null && fenceGate != null) {
+                ModRegistry.addShapedRecipe(
+                    "Horse Stable",
+                    new ItemStack(ModRegistry.HorseStable()),
+                    "aaa",
+                    "bcb",
+                    "ded",
+                    'a',
+                    Item.getItemFromBlock(Blocks.brick_block),
+                    'b',
+                    ModRegistry.BundleOfTimber(),
+                    'c',
+                    Item.getItemFromBlock(Blocks.hay_block),
+                    'd',
+                    new ItemStack(fence),
+                    'e',
+                    new ItemStack(fenceGate));
+            }
+        }
 
-        // Granite Slabs
+        Block prismarine = EtFuturumCompat.getBlock("prismarine_block");
+
+        if (prismarine != null) {
+            ModRegistry.addShapedRecipe(
+                "Ender Gateway",
+                ItemBasicStructure.getStack(EnumBasicStructureName.EnderGateway),
+                "bdb",
+                "dcd",
+                "bab",
+                'a',
+                ModRegistry.GetCompressedStoneType(BlockCompressedStone.EnumType.TRIPLE_COMPRESSED_STONE),
+                'b',
+                new ItemStack(prismarine, 1, 2),
+                'c',
+                new ItemStack(
+                    Item.getItemFromBlock(ModRegistry.CompressedObsidianBlock()),
+                    1,
+                    BlockCompressedObsidian.EnumType.DOUBLE_COMPRESSED_OBSIDIAN.getMetadata()),
+                'd',
+                Item.getItemFromBlock(Blocks.quartz_block));
+        }
+
+        Block seaLantern = EtFuturumCompat.getBlock("sea_lantern");
+
+        if (seaLantern != null) {
+            ModRegistry.addShapedRecipe(
+                "Aqua Base",
+                ItemBasicStructure.getStack(EnumBasicStructureName.AquaBase),
+                "xxx",
+                "yzy",
+                "yay",
+                'x',
+                new ItemStack(Item.getItemFromBlock(Blocks.glass)),
+                'y',
+                ModRegistry.GetCompressedStoneType(BlockCompressedStone.EnumType.DOUBLE_COMPRESSED_STONE),
+                'z',
+                new ItemStack(seaLantern),
+                'a',
+                ModRegistry.CoilOfLanterns());
+        }
     }
 
     /**

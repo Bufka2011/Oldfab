@@ -256,6 +256,13 @@ public class ModernBlockTranslator {
         PropertyReader p = new PropertyReader(properties);
         String originalName = name;
 
+        // Prefer the blocks from Et Futurum Requiem when it's installed.
+        BlockState etFuturumState = EtFuturumCompat.translateMinecraftBlock(name, p);
+
+        if (etFuturumState != null) {
+            return etFuturumState;
+        }
+
         if (DIRECT_RENAMES.containsKey(name)) {
             name = DIRECT_RENAMES.get(name);
         }
@@ -665,6 +672,13 @@ public class ModernBlockTranslator {
     private static BlockState translatePrefabBlock(String name, Map<String, String> properties) {
         PropertyReader p = new PropertyReader(properties);
 
+        // Prefer the blocks from Et Futurum Requiem when it's installed.
+        BlockState etFuturumState = EtFuturumCompat.translatePrefabBlock(name, p);
+
+        if (etFuturumState != null) {
+            return etFuturumState;
+        }
+
         switch (name) {
             case "block_glass_stairs":
                 return new BlockState(findBlock(Prefab.MODID + ":block_glass_stairs"), getStairsMeta(p));
@@ -804,13 +818,13 @@ public class ModernBlockTranslator {
         }
     }
 
-    private static int getStairsMeta(PropertyReader p) {
+    static int getStairsMeta(PropertyReader p) {
         EnumFacing facing = getFacing(p, EnumFacing.EAST);
         int meta = facing.isHorizontal() ? 5 - facing.getIndex() : 0;
         return meta | (p.is("half", "top") ? 4 : 0);
     }
 
-    private static int getAxisMeta(PropertyReader p) {
+    static int getAxisMeta(PropertyReader p) {
         String axis = p.get("axis", "y");
         return axis.equals("x") ? 4 : axis.equals("z") ? 8 : axis.equals("none") ? 12 : 0;
     }
@@ -851,12 +865,12 @@ public class ModernBlockTranslator {
         }
     }
 
-    private static EnumFacing getFacing(PropertyReader p, EnumFacing defaultFacing) {
+    static EnumFacing getFacing(PropertyReader p, EnumFacing defaultFacing) {
         EnumFacing facing = EnumFacing.byName(p.get("facing", defaultFacing.getName()));
         return facing == null ? defaultFacing : facing;
     }
 
-    private static int indexOf(String[] values, String value) {
+    static int indexOf(String[] values, String value) {
         for (int i = 0; i < values.length; i++) {
             if (values[i].equals(value)) {
                 return i;
@@ -906,7 +920,7 @@ public class ModernBlockTranslator {
         return item instanceof Item ? (Item) item : null;
     }
 
-    private static class PropertyReader {
+    static class PropertyReader {
 
         private final Map<String, String> properties;
 
