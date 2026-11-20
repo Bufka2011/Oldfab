@@ -2,18 +2,20 @@ package com.wuest.prefab.StructureGen.CustomStructures;
 
 import java.util.ArrayList;
 
-import net.minecraft.block.*;
-import net.minecraft.entity.monster.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockSign;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.tileentity.*;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityMobSpawner;
+import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.world.World;
 
-import com.wuest.prefab.Config.*;
 import com.wuest.prefab.Config.Structures.MonsterMasherConfiguration;
 import com.wuest.prefab.Config.Structures.StructureConfiguration;
 import com.wuest.prefab.Prefab;
-import com.wuest.prefab.StructureGen.*;
+import com.wuest.prefab.StructureGen.BuildBlock;
+import com.wuest.prefab.StructureGen.Structure;
 import com.wuest.prefab.Util.BlockPos;
 import com.wuest.prefab.Util.BlockState;
 import com.wuest.prefab.Util.EnumFacing;

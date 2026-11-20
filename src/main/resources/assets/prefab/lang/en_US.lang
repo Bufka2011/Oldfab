@@ -13,7 +13,6 @@ item.prefab:item_warehouse_upgrade.name=Warehouse Upgrade
 item.prefab:item_bundle_of_timber.name=Bundle of Timber
 item.prefab:item_horse_stable.name=Horse Stable
 item.prefab:item_nether_gate.name=Nether Gate
-item.prefab:item_modular_house.name=Modular House
 item.prefab:item_basic_structure.name=Basic Structure
 item.prefab:item_instant_bridge.name=Instant Bridge
 
@@ -39,20 +38,13 @@ tile.prefab:block_compressed_stone.block_compressed_glowstone.name=Compressed Gl
 tile.prefab:block_compressed_stone.block_double_compressed_glowstone.name=Double Compressed Glowstone
 tile.prefab:block_compressed_stone.block_compressed_dirt.name=Compressed Dirt
 tile.prefab:block_compressed_stone.block_double_compressed_dirt.name=Double Compressed Dirt
-tile.prefab:block_drafter.name=Drafter
 tile.prefab:block_paper_lantern.name=Paper Lantern
 tile.prefab:block_compressed_obsidian.block_compressed_obsidian.name=Compressed Obsidian
 tile.prefab:block_compressed_obsidian.block_double_compressed_obsidian.name=Double Compressed Obsidian
 tile.prefab:block_phasing.name=Phasic Block
 tile.prefab:block_boundary.name=Boundary Block
 tile.prefab:block_glass_stairs.name=Glass Stairs
-tile.prefab:block_andesite_stairs.name=Andesite Stairs
-tile.prefab:block_diorite_stairs.name=Diorite Stairs
-tile.prefab:block_granite_stairs.name=Granite Stairs
 tile.prefab:block_half_glass_slab.name=Glass Slab
-tile.prefab:block_half_andesite_slab.name=Andesite Slab
-tile.prefab:block_half_diorite_slab.name=Diorite Slab
-tile.prefab:block_half_granite_slab.name=Granite Slab
 
 prefab.gui.fishpond.structure.facing=Note: If you're facing north, choose south so the pier is going away from you. The white border is just to show the size.
 

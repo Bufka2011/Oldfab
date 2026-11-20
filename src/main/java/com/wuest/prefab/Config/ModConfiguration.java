@@ -88,7 +88,8 @@ public class ModConfiguration {
     public ModConfiguration() {
         this.addHouseItem = true;
         this.maximumStartingHouseSize = 16;
-        this.enableVersionCheckMessage = true;
+        // Version checking is not supported in Minecraft 1.7.10.
+        this.enableVersionCheckMessage = false;
         this.includeSpawnersInMasher = true;
         this.allowFloatingTrapdoors = true;
         this.enableStructurePreview = true;
@@ -119,11 +120,6 @@ public class ModConfiguration {
             5,
             16,
             "Determines the maximum size the starting house can be generated as. Server configuration overrides client.");
-        Prefab.proxy.proxyConfiguration.enableVersionCheckMessage = config.getBoolean(
-            ModConfiguration.enableVersionCheckMessageName,
-            ModConfiguration.OPTIONS,
-            true,
-            "Determines if version checking is enabled when application starts. Also determines if the chat message about old versions is shown when joining a world. Server configuration overrides client.");
         Prefab.proxy.proxyConfiguration.enableLoftHouse = config.getBoolean(
             ModConfiguration.enableLoftHouseName,
             ModConfiguration.OPTIONS,
@@ -148,8 +144,6 @@ public class ModConfiguration {
             "Determines if the Preview buttons in structure GUIs and other structure previews functions are enabled. Client side only.");
 
         // Make this property require a restart.
-        config.get(ModConfiguration.OPTIONS, ModConfiguration.enableVersionCheckMessageName, true)
-            .setRequiresMcRestart(true);
         config.get(ModConfiguration.OPTIONS, ModConfiguration.enableLoftHouseName, false)
             .setRequiresMcRestart(true);
 

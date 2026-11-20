@@ -13,7 +13,6 @@ item.prefab:item_warehouse_upgrade.name=Actualización de Almacén
 item.prefab:item_bundle_of_timber.name=Manojo de madera
 item.prefab:item_horse_stable.name=Casa de caballos
 item.prefab:item_nether_gate.name=Puerta abisal
-item.prefab:item_modular_house.name=Casa modular
 item.prefab:item_basic_structure.name=Estructura basica
 item.prefab:item_instant_bridge.name=Puente instantáneo
 
@@ -39,20 +38,13 @@ tile.prefab:block_compressed_stone.block_compressed_glowstone.name=Brillante com
 tile.prefab:block_compressed_stone.block_double_compressed_glowstone.name=Doble comprimido brillante
 tile.prefab:block_compressed_stone.block_compressed_dirt.name=Suciedad comprimida
 tile.prefab:block_compressed_stone.block_double_compressed_dirt.name=Doble suciedad comprimida
-tile.prefab:block_drafter.name=Redactor
 tile.prefab:block_paper_lantern.name=Linterna de papel
 tile.prefab:block_compressed_obsidian.block_compressed_obsidian.name=Obsidiana comprimida
 tile.prefab:block_compressed_obsidian.block_double_compressed_obsidian.name=Doble obsidiana comprimida
 tile.prefab:block_phasing.name=Bloque fásico
 tile.prefab:block_boundary.name=Bloque de límites
 tile.prefab:block_glass_stairs.name=Escaleras de vidrio
-tile.prefab:block_andesite_stairs.name=Andesita escaleras
-tile.prefab:block_diorite_stairs.name=Escaleras de diorita
-tile.prefab:block_granite_stairs.name=Escaleras de granito
 tile.prefab:block_half_glass_slab.name=Losa de vidrio
-tile.prefab:block_half_andesite_slab.name=Losa de andesita
-tile.prefab:block_half_diorite_slab.name=Losa de diorita
-tile.prefab:block_half_granite_slab.name=Losa de granito
 
 prefab.gui.fishpond.structure.facing=Nota: Si usted está mirando hacia el norte, elija el sur por lo que el muelle se va lejos de ti. El borde blanco es sólo para mostrar el tamaño.
 

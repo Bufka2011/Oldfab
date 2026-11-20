@@ -2,7 +2,6 @@ package com.wuest.prefab.Proxy.Messages;
 
 import net.minecraft.nbt.NBTTagCompound;
 
-import com.wuest.prefab.Config.*;
 import com.wuest.prefab.Config.Structures.BasicStructureConfiguration;
 import com.wuest.prefab.Config.Structures.ChickenCoopConfiguration;
 import com.wuest.prefab.Config.Structures.FishPondConfiguration;

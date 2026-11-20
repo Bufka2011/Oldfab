@@ -5,8 +5,55 @@
 The building designs are pre-determined (hence the pre-fabrication idea) but can have small pieces of configuration.
 You can use this in any mod pack. Please provide feedback on additional structures to add (using vanilla blocks/items is preferred). If you find issues please let me know.
 
-## Contributors
-
-If you would like to contribute to Prefab, please see the architecture.md file for how to build and run this repository.
-
 **[CurseForge](https://www.curseforge.com/minecraft/mc-mods/prefab)**
+
+## Minecraft 1.7.10 backport
+
+This branch is a backport of Prefab to **Minecraft 1.7.10 / Forge 10.13.4.1614**. It is based on the
+`1.10.2-Forge` branch (the oldest official version) and uses the
+[GTNewHorizons mod template](https://github.com/GTNewHorizons/ExampleMod1.7.10) (RetroFuturaGradle).
+
+### Building
+
+Java 25 is used to run Gradle (the toolchains for Minecraft are downloaded automatically).
+
+```bash
+./gradlew build
+```
+
+The mod jar is written to `build/libs/`. `./gradlew runClient` and `./gradlew runServer` start a development
+client/server.
+
+### Differences to the 1.10.2 version
+
+Minecraft 1.7.10 has no block states and is missing a number of blocks and items that the 1.10 structures use.
+
+* The structure files are unchanged. They still describe blocks with their 1.10 names and block state properties.
+  `ModernBlockTranslator` converts them to 1.7.10 blocks and metadata (including rotation) when a structure is built
+  or previewed.
+* Blocks which don't exist in 1.7.10 are replaced:
+
+  | 1.10 block | 1.7.10 replacement |
+  | --- | --- |
+  | Spruce/birch/jungle/acacia/dark oak doors, fences and fence gates | Oak doors, fences and fence gates |
+  | Granite / Diorite / Andesite | Hardened clay / Quartz block / Stone |
+  | Prefab granite/diorite/andesite stairs and slabs | Brick, quartz and stone brick stairs/slabs |
+  | Bone block | Quartz pillar |
+  | Sea lantern | Glowstone |
+  | Dark prismarine | Cyan stained hardened clay |
+  | Purpur stairs | Quartz stairs |
+  | Magma block | Netherrack |
+  | Slime block | Lime wool |
+  | End rod | Torch |
+  | Inverted daylight sensor | Daylight sensor |
+  | Coarse dirt | Dirt |
+  | Buttons on floors / ceilings | Wooden pressure plate / removed |
+
+* The Prefab granite, diorite and andesite stairs and slabs were removed since their base blocks don't exist.
+* Recipes which used missing items were adjusted: the Horse Stable only uses oak fences/gates, the Ender Gateway uses
+  Eyes of Ender instead of dark prismarine and the Aqua Base uses glowstone instead of a sea lantern.
+* Trapdoors in 1.10 don't need a supporting block. The new `Allow Floating Trapdoors` option (enabled by default)
+  gives 1.7.10 trapdoors the same behavior so structures keep their decorations.
+* The structure preview uses a constant transparency instead of the 1.10 shader.
+* The update checker was removed, Forge for 1.7.10 has no version checking API.
+* The structure scanning tools (only used by the original author to create structure files) were not ported.

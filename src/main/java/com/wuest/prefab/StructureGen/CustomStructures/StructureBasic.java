@@ -1,6 +1,8 @@
 package com.wuest.prefab.StructureGen.CustomStructures;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockHopper;
+import net.minecraft.block.BlockTrapDoor;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -9,7 +11,8 @@ import com.wuest.prefab.BuildingMethods;
 import com.wuest.prefab.Config.Structures.BasicStructureConfiguration;
 import com.wuest.prefab.Config.Structures.BasicStructureConfiguration.EnumBasicStructureName;
 import com.wuest.prefab.Config.Structures.StructureConfiguration;
-import com.wuest.prefab.StructureGen.*;
+import com.wuest.prefab.StructureGen.BuildBlock;
+import com.wuest.prefab.StructureGen.Structure;
 import com.wuest.prefab.Util.BlockPos;
 import com.wuest.prefab.Util.BlockState;
 import com.wuest.prefab.Util.EnumFacing;
