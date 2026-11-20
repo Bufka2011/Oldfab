@@ -49,6 +49,8 @@ Minecraft 1.7.10 has no block states and is missing a number of blocks and items
   | Coarse dirt | Dirt |
   | Buttons on floors / ceilings | Wooden pressure plate / removed |
 
+* The replacements above are only used when [Et Futurum Requiem](https://github.com/Roadhog360/Et-Futurum-Requiem)
+  is not installed (see below).
 * The Prefab granite, diorite and andesite stairs and slabs were removed since their base blocks don't exist.
 * Recipes which used missing items were adjusted: the Horse Stable only uses oak fences/gates, the Ender Gateway uses
   Eyes of Ender instead of dark prismarine and the Aqua Base uses glowstone instead of a sea lantern.
@@ -57,3 +59,22 @@ Minecraft 1.7.10 has no block states and is missing a number of blocks and items
 * The structure preview uses a constant transparency instead of the 1.10 shader.
 * The update checker was removed, Forge for 1.7.10 has no version checking API.
 * The structure scanning tools (only used by the original author to create structure files) were not ported.
+
+### Et Futurum Requiem support
+
+[Et Futurum Requiem](https://github.com/Roadhog360/Et-Futurum-Requiem) back-ports many blocks from newer versions of
+Minecraft. It's an optional dependency: when it's installed, structures are built with its blocks instead of the
+vanilla replacements, so they look like they did in 1.10:
+
+* Granite, diorite, andesite (and the polished variants) and Prefab's granite/diorite/andesite stairs and slabs
+* Spruce, birch, jungle, acacia and dark oak doors, fences and fence gates
+* Coarse dirt, bone blocks, magma blocks, slime blocks, end rods, sea lanterns, prismarine, purpur, red sandstone,
+  inverted daylight sensors, iron trapdoors and concrete
+
+The original recipes which use these blocks are also added (Horse Stable with any wood type, Ender Gateway with dark
+prismarine and Aqua Base with a sea lantern).
+
+Blocks are looked up by registry name, so blocks which are disabled in the Et Futurum Requiem configuration fall back to
+the vanilla replacements. The integration can be turned off with the `Use Et Futurum Requiem Blocks` option.
+
+The development client and server include Et Futurum Requiem. Pass `-PnoEtFuturum` to Gradle to run them without it.

@@ -33,6 +33,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
     name = "Prefab",
     version = Prefab.VERSION,
     acceptedMinecraftVersions = "[1.7.10]",
+    dependencies = "after:etfuturum",
     guiFactory = "com.wuest.prefab.Gui.ConfigGuiFactory")
 public class Prefab {
 

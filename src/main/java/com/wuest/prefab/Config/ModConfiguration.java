@@ -37,6 +37,7 @@ public class ModConfiguration {
     private static String enableLoftHouseName = "Enable Loft House";
     private static String includeSpawnersInMasherName = "Include Spawners in Monster Masher";
     private static String allowFloatingTrapdoorsName = "Allow Floating Trapdoors";
+    private static String useEtFuturumBlocksName = "Use Et Futurum Requiem Blocks";
     private static String enableStructurePreviewName = "Include Structure Previews";
 
     // Chest content option names.
@@ -64,6 +65,7 @@ public class ModConfiguration {
     public boolean enableLoftHouse;
     public boolean includeSpawnersInMasher;
     public boolean allowFloatingTrapdoors;
+    public boolean useEtFuturumBlocks;
     public boolean enableStructurePreview;
 
     // Chest content options.
@@ -92,6 +94,7 @@ public class ModConfiguration {
         this.enableVersionCheckMessage = false;
         this.includeSpawnersInMasher = true;
         this.allowFloatingTrapdoors = true;
+        this.useEtFuturumBlocks = true;
         this.enableStructurePreview = true;
     }
 
@@ -131,6 +134,14 @@ public class ModConfiguration {
             true,
             "Several structures were designed in Minecraft 1.10 where trapdoors don't need a supporting block. When true, trapdoors no longer break when the block behind them is missing (like in newer versions of Minecraft). When false some trapdoors in structures will drop as items.");
         BlockTrapDoor.disableValidation = Prefab.proxy.proxyConfiguration.allowFloatingTrapdoors;
+
+        Prefab.proxy.proxyConfiguration.useEtFuturumBlocks = config.getBoolean(
+            ModConfiguration.useEtFuturumBlocksName,
+            ModConfiguration.OPTIONS,
+            true,
+            "When Et Futurum Requiem is installed, structures use its blocks (granite, sea lanterns, spruce doors, ...) instead of vanilla 1.7.10 replacements and the original recipes which use these blocks are added. Requires a restart for the recipes. Server configuration overrides client.");
+        config.get(ModConfiguration.OPTIONS, ModConfiguration.useEtFuturumBlocksName, true)
+            .setRequiresMcRestart(true);
 
         Prefab.proxy.proxyConfiguration.includeSpawnersInMasher = config.getBoolean(
             ModConfiguration.includeSpawnersInMasherName,
@@ -263,6 +274,7 @@ public class ModConfiguration {
         tag.setBoolean(ModConfiguration.enableVersionCheckMessageName, this.enableVersionCheckMessage);
         tag.setBoolean(ModConfiguration.enableLoftHouseName, this.enableLoftHouse);
         tag.setBoolean(ModConfiguration.includeSpawnersInMasherName, this.includeSpawnersInMasher);
+        tag.setBoolean(ModConfiguration.useEtFuturumBlocksName, this.useEtFuturumBlocks);
         tag.setBoolean(ModConfiguration.enableStructurePreviewName, this.enableStructurePreview);
 
         tag.setBoolean(ModConfiguration.addSwordName, this.addSword);
@@ -301,6 +313,8 @@ public class ModConfiguration {
         config.enableLoftHouse = tag.getBoolean(ModConfiguration.enableLoftHouseName);
         config.maximumStartingHouseSize = tag.getInteger(ModConfiguration.maximumHouseSizeName);
         config.includeSpawnersInMasher = tag.getBoolean(ModConfiguration.includeSpawnersInMasherName);
+        config.useEtFuturumBlocks = !tag.hasKey(ModConfiguration.useEtFuturumBlocksName)
+            || tag.getBoolean(ModConfiguration.useEtFuturumBlocksName);
         config.enableStructurePreview = tag.getBoolean(ModConfiguration.enableStructurePreviewName);
 
         // Make sure the server admin didn't set the maximum starting size to an invalid value from the configuration

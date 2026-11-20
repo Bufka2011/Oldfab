@@ -34,5 +34,9 @@
  * For more details, see https://docs.gradle.org/8.0.1/userguide/java_library_plugin.html#sec:java_library_configurations_graph
  */
 dependencies {
-    //runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.7.69-GTNH:dev")
+    // Et Futurum Requiem is an optional dependency. Prefab uses its blocks by registry name so it's only needed at
+    // runtime for testing. Run with -PnoEtFuturum to test without it.
+    if (!project.hasProperty("noEtFuturum")) {
+        runtimeOnlyNonPublishable("ganymedes01.etfuturum:Et-Futurum-Requiem:2.7.3-GTNH:dev")
+    }
 }
