@@ -444,13 +444,6 @@ public class ModRegistry {
     }
 
     /**
-     * Static constructor for the mod registry.
-     */
-    static {
-        ModRegistry.RegisterModComponents();
-    }
-
-    /**
      * Gets the item from the ModItems collections.
      * 
      * @param <T>          The type which extends item.
@@ -1609,4 +1602,11 @@ public class ModRegistry {
         ModRegistry.ModGuis.put(ModRegistry.GuiVillagerHouses, GuiVillaerHouses.class);
     }
 
+    /**
+     * Static constructor for the mod registry. This must be the last static member so the other static fields are
+     * initialized first.
+     */
+    static {
+        ModRegistry.RegisterModComponents();
+    }
 }

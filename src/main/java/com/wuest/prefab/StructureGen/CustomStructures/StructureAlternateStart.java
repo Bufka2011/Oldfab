@@ -594,7 +594,7 @@ public class StructureAlternateStart extends Structure {
                     BlockState surroundingState = BlockState.get(world, tempPos);
                     Block surroundingBlock = surroundingState.getBlock();
 
-                    if (!surroundingBlock.isBlockNormalCube() || surroundingBlock instanceof BlockLiquid) {
+                    if (!surroundingBlock.isNormalCube() || surroundingBlock instanceof BlockLiquid) {
                         // This is not a solid block. Get the drops then replace
                         // it with stone.
                         originalStacks = BuildingMethods.ConsolidateDrops(

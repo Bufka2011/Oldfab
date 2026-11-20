@@ -3,6 +3,7 @@ package com.wuest.prefab.Config;
 import java.util.ArrayList;
 import java.util.Map.Entry;
 
+import net.minecraft.block.BlockTrapDoor;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
@@ -35,6 +36,7 @@ public class ModConfiguration {
     private static String enableVersionCheckMessageName = "Enable Version Checking";
     private static String enableLoftHouseName = "Enable Loft House";
     private static String includeSpawnersInMasherName = "Include Spawners in Monster Masher";
+    private static String allowFloatingTrapdoorsName = "Allow Floating Trapdoors";
     private static String enableStructurePreviewName = "Include Structure Previews";
 
     // Chest content option names.
@@ -61,6 +63,7 @@ public class ModConfiguration {
     public boolean enableVersionCheckMessage;
     public boolean enableLoftHouse;
     public boolean includeSpawnersInMasher;
+    public boolean allowFloatingTrapdoors;
     public boolean enableStructurePreview;
 
     // Chest content options.
@@ -87,6 +90,7 @@ public class ModConfiguration {
         this.maximumStartingHouseSize = 16;
         this.enableVersionCheckMessage = true;
         this.includeSpawnersInMasher = true;
+        this.allowFloatingTrapdoors = true;
         this.enableStructurePreview = true;
     }
 
@@ -125,6 +129,13 @@ public class ModConfiguration {
             ModConfiguration.OPTIONS,
             false,
             "Determines if the loft starter house is enabled. This house contains Nether materials in it's construction. Server configuration overrides client.");
+        Prefab.proxy.proxyConfiguration.allowFloatingTrapdoors = config.getBoolean(
+            ModConfiguration.allowFloatingTrapdoorsName,
+            ModConfiguration.OPTIONS,
+            true,
+            "Several structures were designed in Minecraft 1.10 where trapdoors don't need a supporting block. When true, trapdoors no longer break when the block behind them is missing (like in newer versions of Minecraft). When false some trapdoors in structures will drop as items.");
+        BlockTrapDoor.disableValidation = Prefab.proxy.proxyConfiguration.allowFloatingTrapdoors;
+
         Prefab.proxy.proxyConfiguration.includeSpawnersInMasher = config.getBoolean(
             ModConfiguration.includeSpawnersInMasherName,
             ModConfiguration.OPTIONS,

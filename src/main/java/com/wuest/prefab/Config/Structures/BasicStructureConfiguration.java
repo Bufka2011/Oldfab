@@ -286,10 +286,12 @@ public class BasicStructureConfiguration extends StructureConfiguration {
         if (structure.BuildStructure(this, world, hitBlockPos, EnumFacing.NORTH, player)) {
             ItemStack stack = ItemBasicStructure.getBasicStructureItemInHand(player);
 
-            if (stack.stackSize == 1) {
-                player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-            } else {
-                stack.stackSize = stack.stackSize - 1;
+            if (stack != null) {
+                if (stack.stackSize == 1) {
+                    player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+                } else {
+                    stack.stackSize = stack.stackSize - 1;
+                }
             }
 
             player.inventoryContainer.detectAndSendChanges();

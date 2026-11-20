@@ -168,7 +168,8 @@ public class ModEventHandler {
                         continue;
                     }
 
-                    BuildingMethods.ReplaceBlock(structure.world, pos, currentBlock.getBlockState());
+                    // Use flag 2 so neighbor updates don't break blocks which are not supported yet.
+                    BuildingMethods.ReplaceBlock(structure.world, pos, currentBlock.getBlockState(), 2);
 
                     // After placing the initial block, set the sub-block. This needs to happen as the list isn't
                     // always in the correct order.
@@ -179,7 +180,8 @@ public class ModEventHandler {
                             structure.world,
                             subBlock.getStartingPosition()
                                 .getRelativePosition(structure.originalPos, structure.configuration.houseFacing),
-                            subBlock.getBlockState());
+                            subBlock.getBlockState(),
+                            2);
                     }
                 }
             }

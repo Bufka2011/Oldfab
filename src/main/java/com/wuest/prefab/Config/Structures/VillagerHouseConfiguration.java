@@ -7,6 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import com.wuest.prefab.Gui.GuiLangKeys;
+import com.wuest.prefab.Items.Structures.ItemVillagerHouses;
 import com.wuest.prefab.StructureGen.CustomStructures.StructureVillagerHouses;
 import com.wuest.prefab.Util.BlockPos;
 import com.wuest.prefab.Util.EnumFacing;
@@ -79,13 +80,19 @@ public class VillagerHouseConfiguration extends StructureConfiguration {
     protected void ConfigurationSpecificBuildStructure(EntityPlayer player, World world, BlockPos hitBlockPos) {
         StructureVillagerHouses structure = StructureVillagerHouses
             .CreateInstance(this.houseStyle.getStructureLocation(), StructureVillagerHouses.class);
-        structure.BuildStructure(this, world, hitBlockPos, EnumFacing.NORTH, player);
+        if (structure.BuildStructure(this, world, hitBlockPos, EnumFacing.NORTH, player)) {
+            ItemStack stack = player.getCurrentEquippedItem();
 
-        ItemStack stack = player.getCurrentEquippedItem();
+            if (stack != null && stack.getItem() instanceof ItemVillagerHouses) {
+                stack.damageItem(1, player);
 
-        stack.damageItem(1, player);
+                if (stack.stackSize <= 0) {
+                    player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+                }
+            }
 
-        player.inventoryContainer.detectAndSendChanges();
+            player.inventoryContainer.detectAndSendChanges();
+        }
     }
 
     /**

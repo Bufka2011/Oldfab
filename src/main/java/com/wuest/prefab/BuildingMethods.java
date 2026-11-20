@@ -337,7 +337,7 @@ public class BuildingMethods {
     }
 
     public static void ReplaceBlock(World world, BlockPos pos, BlockState replacementBlockState, int flags) {
-        world.setBlockToAir(pos.getX(), pos.getY(), pos.getZ());
+        world.setBlock(pos.getX(), pos.getY(), pos.getZ(), Blocks.air, 0, flags);
         BuildingMethods.ReplaceBlockNoAir(world, pos, replacementBlockState, flags);
     }
 

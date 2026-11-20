@@ -3,11 +3,29 @@ package com.wuest.prefab.StructureGen;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBasePressurePlate;
+import net.minecraft.block.BlockBed;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockButton;
+import net.minecraft.block.BlockCactus;
+import net.minecraft.block.BlockCarpet;
+import net.minecraft.block.BlockDoor;
+import net.minecraft.block.BlockFlowerPot;
+import net.minecraft.block.BlockLadder;
 import net.minecraft.block.BlockLever;
 import net.minecraft.block.BlockLiquid;
+import net.minecraft.block.BlockPortal;
+import net.minecraft.block.BlockRailBase;
+import net.minecraft.block.BlockRedstoneDiode;
+import net.minecraft.block.BlockRedstoneWire;
+import net.minecraft.block.BlockReed;
 import net.minecraft.block.BlockSign;
+import net.minecraft.block.BlockSkull;
+import net.minecraft.block.BlockSnow;
 import net.minecraft.block.BlockTorch;
+import net.minecraft.block.BlockTrapDoor;
+import net.minecraft.block.BlockTripWireHook;
+import net.minecraft.block.BlockVine;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -188,17 +206,14 @@ public class Structure {
                         }
                     }
 
-                    if (!block.getHasFacing()) {
+                    if (Structure.needsSupport(foundBlock)) {
+                        // These blocks need another block to stay in place; place them after everything else.
+                        this.priorityThreeBlocks.add(block);
+                    } else if (!block.getHasFacing()) {
                         this.priorityOneBlocks.add(block);
                     } else {
                         // These blocks may be attached to other facing blocks and must be done later.
-                        if (foundBlock instanceof BlockTorch || foundBlock instanceof BlockSign
-                            || foundBlock instanceof BlockLever
-                            || foundBlock instanceof BlockButton) {
-                            this.priorityThreeBlocks.add(block);
-                        } else {
-                            this.priorityTwoBlocks.add(block);
-                        }
+                        this.priorityTwoBlocks.add(block);
                     }
                 }
             }
@@ -219,6 +234,33 @@ public class Structure {
         }
 
         return true;
+    }
+
+    /**
+     * Determines if the block needs another block to support it. These blocks are placed last.
+     */
+    public static boolean needsSupport(Block block) {
+        return block instanceof BlockTorch || block instanceof BlockSign
+            || block instanceof BlockLever
+            || block instanceof BlockButton
+            || block instanceof BlockBush
+            || block instanceof BlockVine
+            || block instanceof BlockRailBase
+            || block instanceof BlockTrapDoor
+            || block instanceof BlockLadder
+            || block instanceof BlockRedstoneWire
+            || block instanceof BlockBasePressurePlate
+            || block instanceof BlockDoor
+            || block instanceof BlockBed
+            || block instanceof BlockCarpet
+            || block instanceof BlockSnow
+            || block instanceof BlockReed
+            || block instanceof BlockCactus
+            || block instanceof BlockPortal
+            || block instanceof BlockRedstoneDiode
+            || block instanceof BlockTripWireHook
+            || block instanceof BlockFlowerPot
+            || block instanceof BlockSkull;
     }
 
     /**

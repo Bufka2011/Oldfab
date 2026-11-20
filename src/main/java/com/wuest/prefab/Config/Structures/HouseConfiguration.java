@@ -362,8 +362,11 @@ public class HouseConfiguration extends StructureConfiguration {
 
             // Make sure to send a message to the client to sync up the server player information and the client player
             // information.
-            Prefab.network
-                .sendTo(new PlayerEntityTagMessage(playerConfig.getModIsPlayerNewTag(player)), (EntityPlayerMP) player);
+            if (player instanceof EntityPlayerMP && ((EntityPlayerMP) player).playerNetServerHandler != null) {
+                Prefab.network.sendTo(
+                    new PlayerEntityTagMessage(playerConfig.getModIsPlayerNewTag(player)),
+                    (EntityPlayerMP) player);
+            }
         }
     }
 
